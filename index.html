@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Gojo's Words</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #050505;
+      color: white;
+      font-family: Arial, Helvetica, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .container {
+      width: min(700px, 90%);
+      text-align: center;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 7vw, 4rem);
+      margin: 0 0 45px;
+      letter-spacing: -2px;
+    }
+
+    .quote {
+      min-height: 90px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: clamp(1.8rem, 6vw, 3rem);
+      font-weight: bold;
+      margin-bottom: 30px;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .gold {
+      color: #ffd700;
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.25);
+    }
+
+    .subtitle {
+      display: none;
+      color: #777;
+      font-size: 0.8rem;
+      margin-top: -20px;
+      margin-bottom: 25px;
+    }
+
+    button {
+      border: 1px solid #333;
+      background: #111;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #1c1c1c;
+      border-color: #555;
+      transform: translateY(-2px);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    /* Gojo in the corner */
+    .gojo {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      width: min(260px, 35vw);
+      max-height: 55vh;
+      object-fit: contain;
+      object-position: bottom right;
+      pointer-events: none;
+      user-select: none;
+      z-index: 1;
+
+      /* subtle fade into the black background */
+      mask-image: linear-gradient(to top, black 75%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to top, black 75%, transparent 100%);
+    }
+
+    @media (max-width: 600px) {
+      body {
+        overflow: hidden;
+      }
+
+      .container {
+        width: 88%;
+      }
+
+      h1 {
+        margin-bottom: 35px;
+      }
+
+      .quote {
+        min-height: 100px;
+      }
+
+      .gojo {
+        width: 45vw;
+        max-height: 40vh;
+        opacity: 0.75;
+      }
+
+      button {
+        padding: 13px 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <img class="gojo" src="gojo.png" alt="Gojo">
+
+  <main class="container">
+    <h1>vivis fav website aka gojos words</h1>
+
+    <div id="quote" class="quote">
+      Press the button
+    </div>
+
+    <div id="subtitle" class="subtitle">
+      theo dosent say it anymore :c
+    </div>
+
+    <button onclick="randomQuote()">
+      Randomise
+    </button>
+  </main>
+
+  <script>
+    const quotes = [
+      "Domain Expansion",
+      "Throughout heaven and earth, I alone am the honored one.",
+      "Nah, I'd win.",
+      "You cryin?",
+      "Unlimited Void",
+      "Are you the strongest because you're Satoru Gojo?",
+      "I'm the strongest.",
+      "Don't worry, I'm the strongest.",
+      "Love is the most twisted curse of all.",
+      "My students are watching, so I can't afford to lose.",
+      "Dying to win and risking death to win are completely different.",
+      "Theo is dogshit but can be chill also",
+      "No matter how many allies you have around you, when you die, you're alone.",
+      "I’ve always been a good guy who cares about his students.",
+      "Searching for someone to blame is just a pain.",
+      "Youth should not be stolen from the young. I won't let anyone take it away.",
+      "It's not about whether I can. I have to do it.",
+      "My soul denies it.",
+      "When everything is granted to you, you can't do anything.",
+      "Maybe I should just kill all the higher-ups.",
+      "Don't look down on me.",
+      "Winning by dying and winning by risking death are completely different things, Megumi.",
+      "It's going to be lonely. But everyone else will be there with you.",
+      "You should use your strength for others.",
+      "I guess being strong means being isolated.",
+      "I have faith in everyone.",
+      
+    ];
+
+    const quoteElement = document.getElementById("quote");
+    const subtitleElement = document.getElementById("subtitle");
+
+    function randomQuote() {
+      const random = quotes[Math.floor(Math.random() * quotes.length)];
+
+      quoteElement.style.opacity = "0";
+      quoteElement.style.transform = "translateY(5px)";
+
+      setTimeout(() => {
+        quoteElement.textContent = random;
+
+        if (random === "You cryin?") {
+          quoteElement.classList.add("gold");
+          subtitleElement.style.display = "block";
+        } else {
+          quoteElement.classList.remove("gold");
+          subtitleElement.style.display = "none";
+        }
+
+        quoteElement.style.opacity = "1";
+        quoteElement.style.transform = "translateY(0)";
+      }, 150);
+    }
+  </script>
+
+</body>
+</html>
